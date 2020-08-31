@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+
+  postgres:
+      build: 
+        context: .
+        dockerfile: Dockerfile.psql
+      container_name: postgres
+      ports: 
+        - 5432:5432
+
+  keycloak:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      container_name: keycloak
+      ports:
+        - 8080:8080
+      depends_on:
+        - postgres
+    
